@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gerador de parcelas</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	
+</head>
+<body>
+
+     
+    <div class="container">
+
+    	<div class="row">
+
+    		<div class="col-md-3">
+
+    			<div class="form-group">
+
+    				<label for="numero-parcelas">Numero de parcelas</label>
+                    <select class="form-control" id="numero-parcelas" name="numero-parcelas" oninput="camposParcela();">
+                    	<option>1</option>
+                    	<option>2</option>
+                    	<option>3</option>
+                    	<option>4</option>
+                    	<option>5</option>
+                    	<option>6</option>
+                    	<option>7</option>
+                    	<option>8</option>
+                    	<option>9</option>
+                    	<option>10</option>
+                    	<option>11</option>
+                    	<option>12</option>                                       	
+                    </select>
+    				
+    			</div>
+    			
+    		</div>
+    		
+    	</div>
+
+
+
+
+    	<div class="row" id="lista-parcelas"></div>
+
+    	<span id="span-modelo" style="display: none;">
+
+    		  <div class="row">
+    			 <div class="col-md-3">
+    				 <div class="form-group">
+    					<label for="parcela-0">Valor(R$)</label>
+    					<input type="text" class="form-control" id="parcela-0" name="parcela-0">
+
+    					
+    				</div>
+    				
+    			</div>
+    			
+    	    </div>
+    		
+    	</span>
+
+
+
+
+    	<span id="span-real"></span>    	
+    </div>
+
+    <script type="text/javascript">
+    	
+
+    function camposParcela(){
+
+    	   // essa variavel spantestemodelo recebe tudo qoue esta dentro da div como id
+    	   //span-modelo, em formato html
+
+	    	var spantestemodelo = $('#span-modelo').html();
+
+	    	// agora essa variavel spantestemodelo_string recebe o valor da variavel
+	    	// spantestemodelo so que convertia para string
+
+	    	var spantestemodelo_string = spantestemodelo.toString();
+	        
+	        // a varivel campos pega o valor que está escrito dentro do campo
+	        // numero-parcelas usando a função val()
+
+	        var campos = $("#numero-parcelas").val();
+
+	        // a variavel i é criada 
+
+	        var i;
+
+	        // a varivel i recebe o valor 1
+
+	        i = 1;
+
+	        // a variavel texto e criada vazia
+
+	        var texto = '';
+
+	        // o while abaixo testa se o valor de i e igual ou menor ddoque o valor que esta dentro
+	        // da variavel campos, se não ele pega avriavel texto(vazia) e concatena com ela mesma e o coteudo 
+	        // html que esta no formato string usado a função replace para substituir simbolos / -0 por '-' concatenado
+	       // com o valor de i convertido tembem para string epor fim aiciona 1 ao valor de i,pega o id do span-real e adiciona a // ele o valor da variavel texto convertida em html  e faz o teste denovo
+	       // quando i chegar a um valor <= a o valor da variavel campos ele pada de adicionar 1 e  
+
+	        while( i <= campos){
+	             texto = texto + spantestemodelo_string.replace('-0/', '-' + i.toString());
+	             i = i + 1;
+
+	             }
+
+	              $('#span-real').html(texto);
+
+	       
+
+	        
+
+     }
+
+
+
+
+
+    </script>
+
+
+
+
+
+      
+      <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+      <script type="text/javascript" src="js/bootstrap.js"></script>
+</body>
+</html>
